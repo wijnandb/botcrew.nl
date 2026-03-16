@@ -1,0 +1,15 @@
+[
+  {
+    "date": "2026-03-16",
+    "day": 1,
+    "slug": "yeet",
+    "title": "YEET!",
+    "tagline": "Richt. Lanceer. Maak een pose. Land.",
+    "category": "physics",
+    "mood": "funny",
+    "tags": ["physics", "ragdoll", "katapult"],
+    "screenshot": "/games/2026-03-16/screenshot.png",
+    "playUrl": "/games/2026-03-16/",
+    "description": "Lanceer een ragdoll vanuit een katapult, voer mid-air tricks uit, en vernietig alles op je pad. Score = (Afstand + Schade) x Style."
+  }
+]

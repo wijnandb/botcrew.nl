@@ -1,0 +1,80 @@
+---
+import '../styles/global.css'
+
+interface Props {
+  title: string
+  description?: string
+  ogImage?: string
+}
+
+const { title, description = '100 Games in 100 Dagen — Elke dag een nieuw browserspel, gebouwd door AI', ogImage } = Astro.props
+---
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{title} | Bot Crew</title>
+  <meta name="description" content={description} />
+  <meta property="og:title" content={`${title} | Bot Crew`} />
+  <meta property="og:description" content={description} />
+  {ogImage && <meta property="og:image" content={ogImage} />}
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Analytics placeholder — vervang met Plausible/LiveView/GA4 -->
+  <!-- <script defer data-domain="botcrew.nl" src="https://plausible.io/js/script.js"></script> -->
+</head>
+<body class="bg-dark text-light min-h-screen">
+  <nav class="border-b border-light/10">
+    <div class="max-w-5xl mx-auto px-4 py-4 flex items-center justify-between">
+      <a href="/" class="font-[Bangers] text-3xl text-yellow tracking-wider hover:text-orange transition-colors">
+        Bot Crew
+      </a>
+      <div class="flex gap-6 font-[Inter] text-sm text-light/70">
+        <a href="/" class="hover:text-light transition-colors">Home</a>
+        <a href="/games" class="hover:text-light transition-colors">Alle Games</a>
+        <a href="/over" class="hover:text-light transition-colors">Over</a>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <slot />
+  </main>
+
+  <footer class="border-t border-light/10 mt-20">
+    <div class="max-w-5xl mx-auto px-4 py-10">
+      <div class="grid md:grid-cols-3 gap-8">
+        <div>
+          <h3 class="font-[Bangers] text-xl text-yellow mb-3">Bot Crew</h3>
+          <p class="text-sm text-light/60 leading-relaxed">
+            100 Games in 100 Dagen. Elke dag ontwerpt en bouwt AI een uniek browserspel.
+            Een experiment in creatieve automatisering.
+          </p>
+        </div>
+        <div>
+          <h3 class="font-[Inter] font-bold text-sm text-light/80 mb-3">Volg de challenge</h3>
+          <div class="flex flex-col gap-2 text-sm text-light/60">
+            <a href="#" class="hover:text-teal transition-colors">Instagram</a>
+            <a href="#" class="hover:text-teal transition-colors">LinkedIn</a>
+            <a href="#" class="hover:text-teal transition-colors">X / Twitter</a>
+          </div>
+        </div>
+        <div>
+          <h3 class="font-[Inter] font-bold text-sm text-light/80 mb-3">Gebouwd door</h3>
+          <p class="text-sm text-light/60 leading-relaxed">
+            <a href="https://perceptum.nl" class="text-teal hover:text-orange transition-colors font-semibold">Perceptum</a> —
+            AI-oplossingen die werken. Benieuwd wat AI voor jouw bedrijf kan betekenen?
+            <a href="https://perceptum.nl/contact" class="text-orange hover:text-yellow transition-colors underline">Neem contact op</a>.
+          </p>
+        </div>
+      </div>
+      <div class="mt-8 pt-6 border-t border-light/10 text-center text-xs text-light/40">
+        &copy; 2026 Bot Crew — Een project van <a href="https://perceptum.nl" class="text-light/60 hover:text-light">Perceptum</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

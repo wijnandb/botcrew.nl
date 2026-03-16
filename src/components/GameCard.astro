@@ -1,0 +1,37 @@
+---
+interface Props {
+  day: number
+  title: string
+  tagline: string
+  category: string
+  tags: string[]
+  playUrl: string
+  screenshot?: string
+}
+
+const { day, title, tagline, category, tags, playUrl, screenshot } = Astro.props
+---
+<a href={playUrl} class="group block bg-light/5 rounded-xl overflow-hidden border border-light/10 hover:border-teal/50 transition-all hover:scale-[1.02]">
+  <div class="aspect-video bg-dark/50 flex items-center justify-center relative overflow-hidden">
+    {screenshot ? (
+      <img src={screenshot} alt={title} class="w-full h-full object-cover" />
+    ) : (
+      <span class="font-[Bangers] text-4xl text-light/20">{title}</span>
+    )}
+    <div class="absolute top-2 left-2 bg-dark/80 text-yellow font-[Bangers] text-sm px-2 py-1 rounded">
+      Dag {day}
+    </div>
+    <div class="absolute top-2 right-2 bg-teal/80 text-dark text-xs font-bold px-2 py-1 rounded">
+      {category}
+    </div>
+  </div>
+  <div class="p-4">
+    <h3 class="font-[Bangers] text-2xl text-yellow group-hover:text-orange transition-colors">{title}</h3>
+    <p class="text-sm text-light/60 mt-1">{tagline}</p>
+    <div class="flex gap-2 mt-3 flex-wrap">
+      {tags.map(tag => (
+        <span class="text-xs bg-light/10 text-light/50 px-2 py-0.5 rounded">{tag}</span>
+      ))}
+    </div>
+  </div>
+</a>
