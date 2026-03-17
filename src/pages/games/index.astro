@@ -1,19 +1,21 @@
 ---
 import Base from '../../layouts/Base.astro'
 import GameCard from '../../components/GameCard.astro'
-import games from '../../content/games.json'
+import { getGames, getPublishedGames } from '../../lib/games'
 
+const games = getGames()
+const publishedCount = getPublishedGames().length
 const sortedGames = [...games].reverse()
 const categories = [...new Set(games.map(g => g.category))]
 ---
 <Base title="Alle Games" description="Bekijk en speel alle 100 games uit de 100 Games in 100 Dagen challenge">
   <section class="max-w-5xl mx-auto px-4 py-12">
     <h1 class="font-[Bangers] text-5xl text-yellow mb-2">Alle Games</h1>
-    <p class="font-[Inter] text-light/60 mb-8">{games.length} van 100 games gebouwd</p>
+    <p class="font-[Inter] text-light/60 mb-8">{publishedCount} van 100 games gebouwd</p>
 
     <!-- Progress bar -->
     <div class="w-full bg-light/10 rounded-full h-3 mb-8">
-      <div class="bg-teal h-3 rounded-full transition-all" style={`width: ${games.length}%`}></div>
+      <div class="bg-teal h-3 rounded-full transition-all" style={`width: ${publishedCount}%`}></div>
     </div>
 
     <!-- Tags filter -->

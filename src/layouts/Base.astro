@@ -18,13 +18,12 @@ const { title, description = '100 Games in 100 Dagen — Elke dag een nieuw brow
   <meta name="description" content={description} />
   <meta property="og:title" content={`${title} | Bot Crew`} />
   <meta property="og:description" content={description} />
-  {ogImage && <meta property="og:image" content={ogImage} />}
+  <meta property="og:image" content={ogImage || `${Astro.site}favicon.svg`} />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
 
-  <!-- Analytics placeholder — vervang met Plausible/LiveView/GA4 -->
-  <!-- <script defer data-domain="botcrew.nl" src="https://plausible.io/js/script.js"></script> -->
+  <script src="https://analytics.perceptum.nl/liveview.js?key=lv_live_n9ZYqoLk3Elj7yVkgWmWstAlCrgu8Lwk" defer></script>
 </head>
 <body class="bg-dark text-light min-h-screen">
   <nav class="border-b border-light/10">
@@ -34,8 +33,9 @@ const { title, description = '100 Games in 100 Dagen — Elke dag een nieuw brow
       </a>
       <div class="flex gap-6 font-[Inter] text-sm text-light/70">
         <a href="/" class="hover:text-light transition-colors">Home</a>
-        <a href="/games" class="hover:text-light transition-colors">Alle Games</a>
-        <a href="/over" class="hover:text-light transition-colors">Over</a>
+        <a href="/games/" class="hover:text-light transition-colors">Alle Games</a>
+        <a href="/aankomend/" class="hover:text-light transition-colors">Aankomend</a>
+        <a href="/over/" class="hover:text-light transition-colors">Over</a>
       </div>
     </div>
   </nav>
@@ -57,9 +57,9 @@ const { title, description = '100 Games in 100 Dagen — Elke dag een nieuw brow
         <div>
           <h3 class="font-[Inter] font-bold text-sm text-light/80 mb-3">Volg de challenge</h3>
           <div class="flex flex-col gap-2 text-sm text-light/60">
-            <a href="#" class="hover:text-teal transition-colors">Instagram</a>
-            <a href="#" class="hover:text-teal transition-colors">LinkedIn</a>
-            <a href="#" class="hover:text-teal transition-colors">X / Twitter</a>
+            <a href="https://instagram.com/botcrew.nl" target="_blank" class="hover:text-teal transition-colors">Instagram</a>
+            <a href="https://linkedin.com/company/perceptum" target="_blank" class="hover:text-teal transition-colors">LinkedIn</a>
+            <a href="https://x.com/botcrewnl" target="_blank" class="hover:text-teal transition-colors">X / Twitter</a>
           </div>
         </div>
         <div>

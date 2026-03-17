@@ -1,0 +1,89 @@
+---
+import Base from '../layouts/Base.astro'
+import { getPublishedGames } from '../lib/games'
+import queue from '../content/queue.json'
+
+const publishedGames = getPublishedGames().length
+const upcomingGames = queue.upcoming.filter(g => g.status !== 'published')
+
+const moodEmoji: Record<string, string> = {
+  chill: '😌', intense: '🔥', funny: '😂', elegant: '✨', retro: '👾'
+}
+const categoryEmoji: Record<string, string> = {
+  physics: '⚡', strategy: '♟️', word: '📝', rhythm: '🎵', maze: '🌀',
+  arcade: '👾', memory: '🧠', platformer: '🏃', drawing: '✏️',
+  puzzle: '🧩', card: '🃏', racing: '🏎️', typing: '⌨️'
+}
+
+function formatDate(dateStr: string): string {
+  const d = new Date(dateStr + 'T00:00:00')
+  const days = ['zo', 'ma', 'di', 'wo', 'do', 'vr', 'za']
+  const months = ['jan', 'feb', 'mrt', 'apr', 'mei', 'jun', 'jul', 'aug', 'sep', 'okt', 'nov', 'dec']
+  return `${days[d.getDay()]} ${d.getDate()} ${months[d.getMonth()]}`
+}
+---
+<Base title="Aankomende Spellen" description="Bekijk welke games er aankomen in de 100 Games in 100 Dagen challenge">
+  <section class="max-w-3xl mx-auto px-4 py-12">
+    <h1 class="font-[Bangers] text-5xl text-yellow mb-2">Aankomende Spellen</h1>
+    <p class="font-[Inter] text-light/60 mb-8">
+      Elke dag een nieuw browserspel — volledig gemaakt door AI. Hier zie je wat er aankomt.
+    </p>
+
+    <!-- Progress bar -->
+    <div class="w-full bg-light/10 rounded-full h-3 mb-2">
+      <div class="bg-teal h-3 rounded-full transition-all" style={`width: ${publishedGames}%`}></div>
+    </div>
+    <p class="font-[Inter] text-sm text-light/40 mb-10">{publishedGames} / 100 spellen live</p>
+
+    <!-- Upcoming games -->
+    {upcomingGames.length > 0 ? (
+      <div class="flex flex-col gap-4">
+        {upcomingGames.map((game, i) => (
+          <div class="group bg-light/5 border border-light/10 rounded-xl p-5 hover:border-teal/40 transition-all">
+            <div class="flex items-start justify-between gap-4">
+              <div class="flex-1">
+                <h3 class="font-[Bangers] text-2xl text-light group-hover:text-yellow transition-colors">
+                  {game.title}
+                </h3>
+                <div class="flex gap-2 mt-2 flex-wrap">
+                  <span class="text-xs bg-orange/20 text-orange px-2 py-0.5 rounded font-semibold">
+                    {game.status === 'approved' ? '◉ klaar om te spelen' : '○ in ontwikkeling'}
+                  </span>
+                  <span class="text-xs bg-teal/15 text-teal px-2 py-0.5 rounded">
+                    {categoryEmoji[game.category] || '🎮'} {game.category}
+                  </span>
+                  <span class="text-xs bg-light/10 text-light/50 px-2 py-0.5 rounded">
+                    {moodEmoji[game.mood] || ''} {game.mood}
+                  </span>
+                </div>
+              </div>
+              <div class="text-right shrink-0">
+                <span class="font-[Inter] text-sm text-light/40">{formatDate(game.date)}</span>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    ) : (
+      <p class="font-[Inter] text-light/50">Alle geplande spellen zijn al live! Kom snel terug voor nieuwe picks.</p>
+    )}
+
+    <!-- Vote CTA -->
+    <div class="mt-12 bg-light/5 border border-light/10 rounded-2xl p-8 text-center">
+      <h2 class="font-[Bangers] text-3xl text-yellow mb-3">Welk spel wil jij het eerst?</h2>
+      <p class="font-[Inter] text-light/60 mb-6 max-w-lg mx-auto">
+        Volg ons op social media en stem mee — jouw keuze bepaalt welk spel als eerste live gaat.
+      </p>
+      <div class="flex gap-3 justify-center flex-wrap">
+        <a href="https://instagram.com/botcrew.nl" target="_blank"
+           class="bg-orange hover:bg-yellow text-dark font-bold px-5 py-2.5 rounded-lg transition-colors font-[Inter] text-sm">
+          📸 Volg op Instagram
+        </a>
+        <a href="https://x.com/botcrewnl" target="_blank"
+           class="border border-light/30 hover:border-teal text-light/80 hover:text-teal px-5 py-2.5 rounded-lg transition-colors font-[Inter] text-sm">
+          𝕏 Volg op X
+        </a>
+      </div>
+    </div>
+  </section>
+</Base>

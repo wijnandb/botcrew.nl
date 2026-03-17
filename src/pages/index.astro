@@ -1,8 +1,9 @@
 ---
 import Base from '../layouts/Base.astro'
 import GameCard from '../components/GameCard.astro'
-import games from '../content/games.json'
+import { getGames } from '../lib/games'
 
+const games = getGames()
 const latestGame = games[games.length - 1]
 const sortedGames = [...games].reverse()
 ---
@@ -21,7 +22,7 @@ const sortedGames = [...games].reverse()
       <a href={latestGame.playUrl} class="bg-orange hover:bg-yellow text-dark font-bold px-6 py-3 rounded-lg transition-colors font-[Inter]">
         Speel het nieuwste spel
       </a>
-      <a href="/games" class="border border-light/30 hover:border-teal text-light/80 hover:text-teal px-6 py-3 rounded-lg transition-colors font-[Inter]">
+      <a href="/games/" class="border border-light/30 hover:border-teal text-light/80 hover:text-teal px-6 py-3 rounded-lg transition-colors font-[Inter]">
         Alle games bekijken
       </a>
     </div>
@@ -48,7 +49,7 @@ const sortedGames = [...games].reverse()
       </div>
       {sortedGames.length > 7 && (
         <div class="text-center mt-8">
-          <a href="/games" class="text-teal hover:text-orange transition-colors font-[Inter]">
+          <a href="/games/" class="text-teal hover:text-orange transition-colors font-[Inter]">
             Bekijk alle {games.length} games
           </a>
         </div>

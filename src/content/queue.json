@@ -1,0 +1,53 @@
+{
+  "upcoming": [
+    {
+      "date": "2026-03-18",
+      "title": "Woordzoeker met tijdsdruk",
+      "status": "draft",
+      "category": "word",
+      "mood": "chill"
+    },
+    {
+      "date": "2026-03-19",
+      "title": "Ritmisch tikspel met beats",
+      "status": "draft",
+      "category": "rhythm",
+      "mood": "intense"
+    },
+    {
+      "date": "2026-03-20",
+      "title": "Minimalistisch doolhof met verschuivende muren",
+      "status": "draft",
+      "category": "maze",
+      "mood": "elegant"
+    },
+    {
+      "date": "2026-03-21",
+      "title": "Absurde eendjes-arcade",
+      "status": "draft",
+      "category": "arcade",
+      "mood": "funny"
+    },
+    {
+      "date": "2026-03-22",
+      "title": "Visueel geheugenspel met groeiende patronen",
+      "status": "draft",
+      "category": "memory",
+      "mood": "chill"
+    },
+    {
+      "date": "2026-03-23",
+      "title": "Eindeloze platformer met zwaartekracht-wissels",
+      "status": "draft",
+      "category": "platformer",
+      "mood": "intense"
+    },
+    {
+      "date": "2026-03-24",
+      "title": "Tekenuitdaging met AI-beoordeling",
+      "status": "draft",
+      "category": "drawing",
+      "mood": "elegant"
+    }
+  ]
+}
