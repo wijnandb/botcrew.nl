@@ -19,6 +19,8 @@ const { title, description = '100 Games in 100 Dagen — Elke dag een nieuw brow
   <meta property="og:title" content={`${title} | Bot Crew`} />
   <meta property="og:description" content={description} />
   <meta property="og:image" content={ogImage || `${Astro.site}favicon.svg`} />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
@@ -31,13 +33,29 @@ const { title, description = '100 Games in 100 Dagen — Elke dag een nieuw brow
       <a href="/" class="font-[Bangers] text-3xl text-yellow tracking-wider hover:text-orange transition-colors">
         Bot Crew
       </a>
-      <div class="flex gap-6 font-[Inter] text-sm text-light/70">
+      <button id="menu-toggle" class="md:hidden text-light/70 hover:text-light" aria-label="Menu">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+      </button>
+      <div id="nav-links" class="hidden md:flex gap-6 font-[Inter] text-sm text-light/70">
         <a href="/" class="hover:text-light transition-colors">Home</a>
         <a href="/games/" class="hover:text-light transition-colors">Alle Games</a>
         <a href="/aankomend/" class="hover:text-light transition-colors">Aankomend</a>
         <a href="/over/" class="hover:text-light transition-colors">Over</a>
       </div>
     </div>
+    <div id="mobile-nav" class="hidden md:hidden border-t border-light/10 px-4 py-3 font-[Inter] text-sm text-light/70 flex flex-col gap-3">
+      <a href="/" class="hover:text-light transition-colors">Home</a>
+      <a href="/games/" class="hover:text-light transition-colors">Alle Games</a>
+      <a href="/aankomend/" class="hover:text-light transition-colors">Aankomend</a>
+      <a href="/over/" class="hover:text-light transition-colors">Over</a>
+    </div>
+    <script>
+      document.getElementById('menu-toggle')?.addEventListener('click', () => {
+        document.getElementById('mobile-nav')?.classList.toggle('hidden');
+      });
+    </script>
   </nav>
 
   <main>
@@ -66,7 +84,7 @@ const { title, description = '100 Games in 100 Dagen — Elke dag een nieuw brow
           <h3 class="font-[Inter] font-bold text-sm text-light/80 mb-3">Gebouwd door</h3>
           <p class="text-sm text-light/60 leading-relaxed">
             <a href="https://perceptum.nl" class="text-teal hover:text-orange transition-colors font-semibold">Perceptum</a> —
-            AI-oplossingen die werken. Benieuwd wat AI voor jouw bedrijf kan betekenen?
+            slim automatiseren voor bedrijven. Benieuwd wat wij voor jou kunnen betekenen?
             <a href="https://perceptum.nl/contact" class="text-orange hover:text-yellow transition-colors underline">Neem contact op</a>.
           </p>
         </div>

@@ -4,7 +4,7 @@ import GameCard from '../components/GameCard.astro'
 import { getGames } from '../lib/games'
 
 const games = getGames()
-const latestGame = games[games.length - 1]
+const latestGame = games.length > 0 ? games[games.length - 1] : null
 const sortedGames = [...games].reverse()
 ---
 <Base title="100 Games in 100 Dagen">
@@ -19,24 +19,41 @@ const sortedGames = [...games].reverse()
       puur creatieve automatisering. Speel ze allemaal, gratis.
     </p>
     <div class="mt-8 flex gap-4 justify-center">
-      <a href={latestGame.playUrl} class="bg-orange hover:bg-yellow text-dark font-bold px-6 py-3 rounded-lg transition-colors font-[Inter]">
-        Speel het nieuwste spel
-      </a>
+      {latestGame ? (
+        <a href={latestGame.playUrl} class="bg-orange hover:bg-yellow text-dark font-bold px-6 py-3 rounded-lg transition-colors font-[Inter]">
+          Speel het nieuwste spel
+        </a>
+      ) : (
+        <a href="/aankomend/" class="bg-orange hover:bg-yellow text-dark font-bold px-6 py-3 rounded-lg transition-colors font-[Inter]">
+          Bekijk wat er aankomt
+        </a>
+      )}
       <a href="/games/" class="border border-light/30 hover:border-teal text-light/80 hover:text-teal px-6 py-3 rounded-lg transition-colors font-[Inter]">
         Alle games bekijken
       </a>
     </div>
   </section>
 
-  <!-- Vandaag's game -->
-  <section class="max-w-5xl mx-auto px-4 py-8">
-    <h2 class="font-[Bangers] text-3xl text-light mb-6">
-      Vandaag: Dag {latestGame.day}
-    </h2>
-    <div class="max-w-md">
-      <GameCard {...latestGame} />
-    </div>
-  </section>
+  {latestGame ? (
+    <!-- Vandaag's game -->
+    <section class="max-w-5xl mx-auto px-4 py-8">
+      <h2 class="font-[Bangers] text-3xl text-light mb-6">
+        Vandaag: Dag {latestGame.day}
+      </h2>
+      <div class="max-w-md">
+        <GameCard {...latestGame} />
+      </div>
+    </section>
+  ) : (
+    <section class="max-w-5xl mx-auto px-4 py-8 text-center">
+      <div class="bg-light/5 border border-light/10 rounded-2xl p-12">
+        <p class="font-[Bangers] text-4xl text-teal mb-4">Binnenkort!</p>
+        <p class="font-[Inter] text-light/60 max-w-md mx-auto">
+          We werken hard aan de eerste games. Volg ons om te zien wanneer het begint!
+        </p>
+      </div>
+    </section>
+  )}
 
   <!-- Recente games -->
   {sortedGames.length > 1 && (
@@ -60,10 +77,11 @@ const sortedGames = [...games].reverse()
   <!-- CTA -->
   <section class="max-w-3xl mx-auto px-4 py-16 text-center">
     <div class="bg-light/5 border border-light/10 rounded-2xl p-8">
-      <h2 class="font-[Bangers] text-3xl text-yellow mb-4">Wat kan AI voor jou bouwen?</h2>
+      <h2 class="font-[Bangers] text-3xl text-yellow mb-4">Wat kunnen wij voor jou betekenen?</h2>
       <p class="font-[Inter] text-light/70 leading-relaxed mb-6">
-        Dit project laat zien wat er mogelijk is met AI. Elke game — van concept tot werkend product —
-        is ontworpen en gebouwd door AI in een sessie. Benieuwd wat dit voor jouw bedrijf kan betekenen?
+        Dit project laat zien wat er tegenwoordig allemaal mogelijk is. Door slim te automatiseren kun je
+        bijvoorbeeld elke dag een nieuwe game lanceren en onder de aandacht brengen. Volledig geautomatiseerd.
+        Benieuwd wat wij voor jou kunnen betekenen?
       </p>
       <a href="https://perceptum.nl/contact" class="inline-block bg-teal hover:bg-orange text-dark font-bold px-8 py-3 rounded-lg transition-colors font-[Inter]">
         Praat met Perceptum

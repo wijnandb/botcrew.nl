@@ -18,19 +18,28 @@ const categories = [...new Set(games.map(g => g.category))]
       <div class="bg-teal h-3 rounded-full transition-all" style={`width: ${publishedCount}%`}></div>
     </div>
 
-    <!-- Tags filter -->
-    <div class="flex gap-2 flex-wrap mb-8">
-      <span class="text-xs bg-teal/20 text-teal px-3 py-1 rounded-full font-bold">Alle</span>
-      {categories.map(cat => (
-        <span class="text-xs bg-light/10 text-light/50 px-3 py-1 rounded-full cursor-pointer hover:bg-light/20">{cat}</span>
-      ))}
-    </div>
+    {games.length > 0 ? (
+      <!-- Tags filter -->
+      <div class="flex gap-2 flex-wrap mb-8">
+        <span class="text-xs bg-teal/20 text-teal px-3 py-1 rounded-full font-bold">Alle</span>
+        {categories.map(cat => (
+          <span class="text-xs bg-light/10 text-light/50 px-3 py-1 rounded-full cursor-pointer hover:bg-light/20">{cat}</span>
+        ))}
+      </div>
 
-    <!-- Games grid -->
-    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-      {sortedGames.map(game => (
-        <GameCard {...game} />
-      ))}
-    </div>
+      <!-- Games grid -->
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {sortedGames.map(game => (
+          <GameCard {...game} />
+        ))}
+      </div>
+    ) : (
+      <div class="bg-light/5 border border-light/10 rounded-2xl p-12 text-center">
+        <p class="font-[Bangers] text-4xl text-teal mb-4">Nog even geduld!</p>
+        <p class="font-[Inter] text-light/60 max-w-md mx-auto">
+          De eerste games zijn bijna klaar. Bekijk de <a href="/aankomend/" class="text-orange hover:text-yellow underline">aankomende spellen</a>.
+        </p>
+      </div>
+    )}
   </section>
 </Base>
